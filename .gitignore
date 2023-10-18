@@ -1,3 +1,5 @@
 venv
 data
 !data/examples
+__pycache__/
+.pytest_cache
