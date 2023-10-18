@@ -29,13 +29,9 @@ def csv2sqlite(csv_path: str, separator=None, db_path=None) -> None:
     # insert all of the data appropriately
     cur.execute(sql_create_table_statement_from_header(name, df.columns))
     # write the database
-    # statement = f"""INSERT INTO {name} VALUES({(("?, "*len(df.values[0]))[:-2])})"""
-    # cur.executemany(statement, df.values)
-    # print(df)
-    for row in df.values:
-        data = ",".join([str(x) for x in row])
-        statement = f"""INSERT INTO {name} VALUES({data})"""
-        cur.execute(statement)
+    statement = f"""INSERT INTO {name} VALUES({(("?, "*len(df.values[0]))[:-2])})"""
+    # without using tolist we get byte objects instead of typed values
+    cur.executemany(statement, df.values.tolist())
         
     db.commit()
     db.close()
