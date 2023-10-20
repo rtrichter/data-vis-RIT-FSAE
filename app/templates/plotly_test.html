@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Plotly Test Page</title>
+        <meta name="plotly-test-page" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href={{url_for('static', filename="styles/plot.css")}}>
+
+<style>
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    background-color: #272b34;
+    font-family: 'Khula', sans-serif;
+    font-weight: 300;
+    color: white;
+    line-height: 1em;
+    margin: 0;
+  padding: 2em 1em;
+}
+</style>
+    </head>
+    <body>
+        <h1>This is just a test</h1>
+        <div id='chart' class='chart'></div>
+        <h1>this is below the chart</h1>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+    </body>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script type='text/javascript'>
+      var graphs = {{figJSON | safe}};
+      Plotly.plot('chart',graphs,{});
+    </script>
+</html>

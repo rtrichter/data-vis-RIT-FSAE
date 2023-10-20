@@ -5,8 +5,10 @@ def init_app() -> Flask:
     app = Flask(__name__)
 
     # register blueprints
-    from app.home.blueprint import blueprint
-    app.register_blueprint(blueprint)
+    from app.home.blueprint import blueprint as bp1
+    app.register_blueprint(bp1)
+    from app.plotly_test.blueprint import blueprint as bp2
+    app.register_blueprint(bp2)
     
 
     return app

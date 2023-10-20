@@ -1,6 +1,5 @@
 from utils.sqlite_tools.conversions.csv2sqlite import *
 import pytest
-import os
 
 params_test_sql_create_table_statement_from_header = [
     ("test1", ["col1", "col2", "col3"], "CREATE TABLE test1(col1, col2, col3)")
