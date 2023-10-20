@@ -1,6 +1,5 @@
 import sqlite3
 import pandas as pd
-# from utils.sqlite_tools.conversions.csv2sqlite import csv2sqlite
 
 def sql_create_table_statement_from_header(name: str, header: list[str]) -> str:
     columns = ", ".join(header)
@@ -21,7 +20,7 @@ def csv2sqlite(csv_path: str, separator=None, db_path=None) -> None:
         # replace the file extension and save in the same place
         db_path = "".join(csv_path.split('.')[:-1]) + ".db"
     # load the csv
-    df = pd.read_csv(csv_path)
+    df = pd.read_csv(csv_path, sep=separator)
     # make a connection
     db = sqlite3.connect(db_path)
     # make a cursor
@@ -32,7 +31,7 @@ def csv2sqlite(csv_path: str, separator=None, db_path=None) -> None:
     statement = f"""INSERT INTO {name} VALUES({(("?, "*len(df.values[0]))[:-2])})"""
     # without using tolist we get byte objects instead of typed values
     cur.executemany(statement, df.values.tolist())
-        
+
     db.commit()
     db.close()
     return db_path
