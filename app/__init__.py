@@ -33,6 +33,8 @@ def init_app() -> Flask:
     app.register_blueprint(bp1)
     from app.plotly_test.blueprint import blueprint as bp2
     app.register_blueprint(bp2)
+    from app import file_handler
+    app.register_blueprint(file_handler.bp)
     
 
     return app

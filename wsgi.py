@@ -1,4 +1,9 @@
-from app import init_app
+from app import init_app, shutdown
+from os import system
 
 if __name__ == "__main__":
-    init_app().run()
+    app = init_app()
+    try: 
+        app.run()
+    finally:
+        shutdown(app)
