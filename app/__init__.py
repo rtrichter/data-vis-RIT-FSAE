@@ -21,7 +21,7 @@ def purge_directory(path: str):
 # app start/stop -------------------------------------------------------------
 def shutdown(app: Flask) -> None:
     # make sure there are no temporary files
-    purge_directory(config["TMP"])
+    purge_directory("app/" + config["TMP"])
 
 
 def init_app() -> Flask:
